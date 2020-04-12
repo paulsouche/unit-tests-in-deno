@@ -20,8 +20,14 @@ Deno.test("it should assert on a variable value", () => {
 
 Deno.test("it should assert if two variables are equivalent", () => {
   asserts.assertEquals({}, {});
+  // asserts.assertNotEquals({}, []); // fails
+  // asserts.assertEquals({}, []); // pass
   // Oups ! These are equals...
-  // asserts.assertNotEquals({}, []);
+  // As far as I went, it "works" in chai, jasmine
+  // https://github.com/chaijs/deep-eql/blob/fa5c6042e5c127df12e1f3ee4b9f9b3e2302864c/index.js#L184
+  // https://github.com/jasmine/jasmine/blob/master/lib/jasmine-core/jasmine.js#L4624
+  // and jest but did not dig why...
+  // issue : https://github.com/denoland/deno/issues/4727
 });
 
 Deno.test("it should assert if two variables refers to the same value in memory", () => {
